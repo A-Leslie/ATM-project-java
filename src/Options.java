@@ -19,15 +19,17 @@ HashMap<Integer,Integer> data = new HashMap<Integer,Integer>();
              //I've set 2 account privileges
              data.put(9876543,9876);
              data.put(8989898,1890);
+             data.put(1001000, 1891);
+
 
              System.out.println("Welcome to ATM !!");
 
              //read customer number and  pin-number
 
-             System.out.println("Enter your Customer Number: ");
+             System.out.print("Enter your Customer Number: ");
              setCustomerNumber(menuInput.nextInt());
 
-             System.out.println("Enter your Pin Number: ");
+             System.out.print("Enter your Pin Number: ");
              setPinNumber(menuInput.nextInt());
          }
          //if other characters are passed
@@ -35,11 +37,15 @@ HashMap<Integer,Integer> data = new HashMap<Integer,Integer>();
              System.out.println("\n"+"Invalid character(s). Only numbers."+"\n");
              x=2;
          }
+
+
          //check if entered customer number and pin-number are correct
+
          for(Entry<Integer,Integer> entry:data.entrySet()){
-             if(entry.getKey()== getCustomerNumber() && entry.getValue() == getPinNumber());
+             if(entry.getKey() == getCustomerNumber() && entry.getValue() == getPinNumber());
              getAccountType();
          }
+
          System.out.println("\n"+"Wrong Customer Number or Pin Number"+"\n");
      }while(x == 1);
     }
@@ -62,11 +68,79 @@ HashMap<Integer,Integer> data = new HashMap<Integer,Integer>();
                 getSaving();
                 break;
             case 3:
-                getChecking();
+                System.out.println("Thank you for using the ATM,Bye.");
                 break;
-            case 1:
-                getChecking();
+            default:
+                System.out.println("\n"+"Invalid choice"+"\n");
                 break;
         }
     }
+
+    //Display checking account menu with selections
+    public void getChecking() {
+        System.out.println("Checking Account: ");
+        System.out.println("Type 1 - View Balance");
+        System.out.println("Type 2 - Withdraw Funds");
+        System.out.println("Type 3 - Deposit Funds");
+        System.out.println("Type 4 - Exit");
+        System.out.println("Choice: ");
+
+
+        selection = menuInput.nextInt();
+        switch (selection) {
+            case 1:
+                System.out.println("Checking Account Balance: " + moneyFormat.format(getCheckingBalance()));
+                getAccountType();
+                break;
+            case 2:
+                getCheckingWithdrawInput();
+                getAccountType();
+                break;
+            case 3:
+                getCheckingDepositInput();
+                getAccountType();
+                break;
+            case 4:
+                System.out.println("Thank you for using the ATM");
+                break;
+            default:
+                System.out.println("\n" + "Invalid choice" + "\n");
+                break;
+        }
+    }
+
+    //Display saving account menu in selection
+    public  void getSaving(){
+        System.out.println("Saving Account: ");
+        System.out.println("Type 1 - View Balance");
+        System.out.println("Type 2 - Withdraw Funds");
+        System.out.println("Type 3 - Deposit Funds");
+        System.out.println("Type 4 - Exit");
+        System.out.println("Choice: ");
+
+        selection = menuInput.nextInt();
+        switch (selection) {
+            case 1:
+                System.out.println("Saving Account Balance: " + moneyFormat.format(getSavingBalance()));
+                getAccountType();
+                break;
+            case 2:
+                getSavingWithdrawInput();
+                getAccountType();
+                break;
+            case 3:
+                getSavingDepositInput();
+                getAccountType();
+                break;
+            case 4:
+                System.out.println("Thank you for using the ATM");
+                break;
+            default:
+                System.out.println("\n" + "Invalid choice" + "\n");
+                break;
+        }
+
+    }
+    int selection;
+
 }
