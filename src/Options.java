@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.Map.Entry;
 
 public class Options  extends Account {
 Scanner menuInput = new Scanner(System.in);
@@ -15,10 +16,10 @@ HashMap<Integer,Integer> data = new HashMap<Integer,Integer>();
     public void getLogin() throws IOException{
      int x=1;
      do {
-         try{
-             //I've set 2 account privileges
-             data.put(9876543,9876);
-             data.put(8989898,1890);
+         try {
+             //I've set 3 account privileges
+             data.put(9876543, 9876);
+             data.put(8989898, 1890);
              data.put(1001000, 1891);
 
 
@@ -33,18 +34,19 @@ HashMap<Integer,Integer> data = new HashMap<Integer,Integer>();
              setPinNumber(menuInput.nextInt());
          }
          //if other characters are passed
-         catch (Exception e){
-             System.out.println("\n"+"Invalid character(s). Only numbers."+"\n");
-             x=2;
+         catch (Exception e) {
+             System.out.println("\n" + "Invalid character(s). Only numbers." + "\n");
+             x = 2;
          }
 
 
          //check if entered customer number and pin-number are correct
 
-         for(Entry<Integer,Integer> entry:data.entrySet()){
-             if(entry.getKey() == getCustomerNumber() && entry.getValue() == getPinNumber());
-             getAccountType();
+         for (Entry<Integer, Integer> entry : data.entrySet()) {
+             if (entry.getKey() == getCustomerNumber() && entry.getValue() == getPinNumber()){
+                 getAccountType();
          }
+     }
 
          System.out.println("\n"+"Wrong Customer Number or Pin Number"+"\n");
      }while(x == 1);
