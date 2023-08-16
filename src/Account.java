@@ -25,7 +25,7 @@ DecimalFormat moneyFormat = new DecimalFormat("'$' ###,##0.00");
         return pinNumber;
     }
 
-    //get check account balance
+    //get checking account balance
     public double getCheckingBalance(){
         return checkingBalance;
     }
@@ -51,7 +51,7 @@ DecimalFormat moneyFormat = new DecimalFormat("'$' ###,##0.00");
 
     //calculate the checking account deposit
 
-    public double calcCheckingDeposit(double amount){
+    public double calcCheckingDeposit (double amount){
         checkingBalance = (checkingBalance + amount);
         return checkingBalance;
     }
@@ -64,7 +64,7 @@ DecimalFormat moneyFormat = new DecimalFormat("'$' ###,##0.00");
     }
 
     //customer checking account withdrawal input
-    public void getCheckingWithdrawalInput(){
+    public void getCheckingWithdrawInput(){
         System.out.println("Checking Account Balance: "+moneyFormat.format(checkingBalance));
         System.out.print("Amount you want to withdraw from checking Account: ");
         double amount = input.nextDouble();
@@ -77,12 +77,39 @@ DecimalFormat moneyFormat = new DecimalFormat("'$' ###,##0.00");
     }
 
     //customer saving account withdrawal input
-    public void getSavingWithdrawalInput(){
+    public void getSavingWithdrawInput(){
         System.out.println("Saving Account Balance: "+moneyFormat.format(savingBalance));
         System.out.print("Amount you want to withdraw from saving Account: ");
         double amount = input.nextDouble();
         if ((savingBalance - amount)>=0){
             calcSavingWithdraw(amount);
+            System.out.println("New Saving Account balance" + moneyFormat.format(savingBalance));
+        }else{
+            System.out.println("Balance cannot be negative" + "\n");
+        }
+    }
+
+
+    //customer checking account withdrawal input
+    public void getCheckingDepositInput(){
+        System.out.println("Checking Account Balance: "+moneyFormat.format(checkingBalance));
+        System.out.print("Amount you want to withdraw from checking Account: ");
+        double amount = input.nextDouble();
+        if ((checkingBalance + amount)>=0){
+            calcCheckingDeposit(amount);
+            System.out.println("New Checking Account balance" + moneyFormat.format(checkingBalance));
+        }else{
+            System.out.println("Balance cannot be negative" + "\n");
+        }
+    }
+
+    //customer saving account withdrawal input
+    public void getSavingDepositInput(){
+        System.out.println("Saving Account Balance: "+moneyFormat.format(savingBalance));
+        System.out.print("Amount you want to withdraw from saving Account: ");
+        double amount = input.nextDouble();
+        if ((savingBalance + amount)>=0){
+            calcSavingDeposit(amount);
             System.out.println("New Saving Account balance" + moneyFormat.format(savingBalance));
         }else{
             System.out.println("Balance cannot be negative" + "\n");
